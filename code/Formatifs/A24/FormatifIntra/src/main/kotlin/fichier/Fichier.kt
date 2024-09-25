@@ -26,12 +26,14 @@ fun lire() {
 fun ecrire(args: List<String>): Int {
 
     if (args.count() != 2){
-        println("message d'erreur")
+        println("message d'erreur oh no stinky")
         return -1
     }
 
-    val fichier: File = File(args[0])
-    fichier.writeText(args[1])
+    val file = File(args[0])
+    file.writeText(args[1])
 
+    println(file.readText())
     return 1
 }
+

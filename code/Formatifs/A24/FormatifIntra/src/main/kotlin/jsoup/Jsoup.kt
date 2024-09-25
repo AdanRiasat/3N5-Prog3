@@ -3,12 +3,16 @@ package jsoup
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import org.jsoup.select.Elements
+import java.io.File
 import javax.print.Doc
 
 fun main() {
     // Tu peux tester la fonction en l'appelant ici.
+    val text = jsoup(listOf("hello", "world", "today"))
+    val file = File("omg.html")
+    file.writeText(text.toString())
 
-    jsoup(listOf("hello", "world", "today"))
 }
 
 /**
@@ -42,16 +46,15 @@ fun main() {
  * </body>
  */
 fun jsoup(mots: List<String>): Document {
-
     val doc: Document = Jsoup.connect("https://info.cegepmontpetit.ca/3N5-Prog3/intraA24-2.html").get()
-    var body: String = doc.body().text()
-    for (string: String in mots){
-        body += "\n<div>$string</div>"
+    val body: Element = doc.body()
+
+
+    for (mot in mots) {
+        body.append("<div>$mot</div>")
     }
 
-    doc.body().html(body)
     println(doc)
-
     return doc
 
 }

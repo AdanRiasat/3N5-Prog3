@@ -4,7 +4,7 @@ import org.jsoup.Connection.Base
 
 fun main() {
     // Tu peux tester la fonction en l'appelant ici.
-    println(racineCarre(64.0))
+    println(racineCarre(81.0))
 }
 
 /**
@@ -34,24 +34,23 @@ fun racineCarre(x: Double): Double {
      */
     var resultat: Double = 0.0
 
-    while((resultat + 1) * (resultat + 1) <= x){
+    while ((resultat + 1) * (resultat + 1) <= x){
         resultat++
     }
 
     val fractions: Array<Double> = arrayOf(0.1, 0.01, 0.001, 0.0001)
 
-    for (fraction: Double in fractions){
-        var base = resultat
+    for (fraction in fractions){
+        var base: Double = resultat
 
-        for (i: Int in 0..9){
-            var test = base + (fraction * i)
+        for (chiffre: Int in 0..9){
+            var test: Double = base + (fraction * chiffre)
 
             if (test * test <= x){
                 resultat = test
             }
         }
     }
-
 
     return resultat
 }
